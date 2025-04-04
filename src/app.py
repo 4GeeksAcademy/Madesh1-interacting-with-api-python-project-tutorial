@@ -6,10 +6,8 @@ import statsmodels.api as sm
 from dotenv import load_dotenv
 from spotipy.oauth2 import SpotifyClientCredentials
 
-# load the .env file variables
 load_dotenv()
 
-# Load credentials
 client_id=os.environ.get('CLIENT_ID')
 client_secret=os.environ.get('CLIENT_SECRET')
 
@@ -55,10 +53,10 @@ if __name__ == '__main__':
         p_value=results.summary2().tables[1]['P>|t|'].iloc[1]
 
         # Plot the duration vs popularity
-        plt.title('Dependence of track popularity on duration')
-        plt.scatter(durations, popularities, color='black')
+        plt.title('Dependence of track popularity on duration', fontsize=20, fontweight='bold')
+        plt.scatter(durations, popularities, color='blue')
         plt.plot(durations, results.predict(X), color='red')
         plt.text(2.1, 75, f'Regression coefficent p-value = {p_value:.3f}')
-        plt.ylabel('Popularity')
-        plt.xlabel('Duration')
+        plt.ylabel('Popularity', fontweight='bold')
+        plt.xlabel('Duration', fontweight='bold')
         plt.savefig('./duration_plot.jpg', dpi=300)
